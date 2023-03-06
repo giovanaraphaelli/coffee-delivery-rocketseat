@@ -1,0 +1,101 @@
+.card {
+  background-color: var(--base-card);
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 1.5rem 1.5rem 1.5rem;
+  align-items: center;
+  border-radius: 6px 36px;
+  position: relative;
+}
+.card img {
+  position: absolute;
+  top: -20px;
+  width: 120px;
+  height: 120px;
+}
+
+.wrapperTags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.wrapperTags > span {
+  background-color: var(--yellow-light);
+  color: var(--yellow-dark);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: var(--base-subtitle);
+  font-family: 'Baloo 2';
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: var(--base-label);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.card form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.725rem;
+}
+
+.card form > p {
+  font-size: 0.875rem;
+  color: var(--base-text);
+}
+.card form > p > span {
+  font-family: 'Baloo 2';
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.card form > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card form > div .counter {
+  background-color: var(--base-button);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+}
+
+.card form > div .counter button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.7rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card form > div .counter button svg {
+  color: var(--purple);
+}
+
+.card form > div button {
+  border: none;
+  background-color: var(--purple-dark);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+}

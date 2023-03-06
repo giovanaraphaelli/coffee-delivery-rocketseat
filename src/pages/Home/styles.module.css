@@ -1,0 +1,19 @@
+h2 {
+  font-family: 'Baloo 2';
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--base-subtitle);
+  margin: 3.5rem 0;
+}
+
+.wrapperCards {
+  display: grid;
+  grid-template-columns: 256px 256px 256px 256px;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .wrapperCards {
+    grid-template-columns: 1fr;
+  }
+}
