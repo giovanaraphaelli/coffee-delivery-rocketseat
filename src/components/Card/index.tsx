@@ -1,7 +1,9 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
+import { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 
 interface Coffee {
+  id: string;
   image: string;
   name: string;
   tags: string[];
@@ -14,6 +16,26 @@ interface CardProps {
 }
 
 export function Card({ coffee }: CardProps) {
+  const [count, setCount] = useState<number>(1);
+
+  function handleIncrement() {
+    setCount(count + 1);
+  }
+
+  function handleDecrement() {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  }
+
+  function formatPrice(price: number, count: number): string {
+    const total = price * count;
+    return total.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
   return (
     <div className={styles.card}>
       <img src={coffee.image} alt={coffee.name} />
@@ -26,19 +48,19 @@ export function Card({ coffee }: CardProps) {
       <p>{coffee.description}</p>
       <form>
         <p>
-          R$ <span>{coffee.price}</span>
+          R$<span> {formatPrice(coffee.price, count)}</span>
         </p>
         <div>
           <div className={styles.counter}>
-            <button>
+            <button type="button" onClick={handleDecrement}>
               <Minus size={14} weight="fill" />
             </button>
-            1
-            <button>
+            <span>{count}</span>
+            <button type="button" onClick={handleIncrement}>
               <Plus size={14} weight="fill" />
             </button>
           </div>
-          <button>
+          <button type="button">
             <ShoppingCart size={20} weight="fill" color="#fff" />
           </button>
         </div>
