@@ -1,0 +1,25 @@
+.containerCheckout {
+  display: grid;
+  grid-template-columns: 1fr 448px;
+  column-gap: 2rem;
+}
+
+.containerCheckout h2 {
+  font-family: 'Baloo 2';
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.containerCheckout .resume,
+.containerCheckout form {
+  background-color: var(--base-card);
+  padding: 2.5rem;
+}
+
+.containerCheckout .resume {
+  border-radius: 6px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

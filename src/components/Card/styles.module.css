@@ -1,4 +1,4 @@
-.card {
+.cardCatalog {
   background-color: var(--base-card);
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   border-radius: 6px 36px;
   position: relative;
 }
-.card img {
+.cardCatalog img {
   position: absolute;
   top: -20px;
   width: 120px;
@@ -30,7 +30,7 @@
   margin-bottom: 1rem;
 }
 
-.card h3 {
+.cardCatalog h3 {
   color: var(--base-subtitle);
   font-family: 'Baloo 2';
   font-weight: 700;
@@ -38,13 +38,13 @@
   margin-bottom: 0.5rem;
 }
 
-.card p {
+.cardCatalog p {
   color: var(--base-label);
   font-size: 0.875rem;
   text-align: center;
 }
 
-.card form {
+.cardCatalog form {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -53,29 +53,30 @@
   margin-top: 1.725rem;
 }
 
-.card form > p {
+.cardCatalog form > p {
   font-size: 0.875rem;
   color: var(--base-text);
 }
-.card form > p > span {
+.price {
   font-family: 'Baloo 2';
   font-weight: 800;
   font-size: 1.5rem;
 }
-.card form > div {
+.cardCatalog form > div {
   display: flex;
   gap: 0.5rem;
 }
 
-.card form > div .counter {
+.counter {
   background-color: var(--base-button);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 6px;
+  max-width: 4.5rem;
 }
 
-.card form > div .counter button {
+.counter button {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -84,15 +85,15 @@
   justify-content: center;
   align-items: center;
 }
-.card form > div .counter button svg {
+.counter button svg {
   color: var(--purple);
 }
 
-.card form > div .counter span {
+.counter span {
   color: var(--base-title);
 }
 
-.card form > div button {
+.btnCart {
   border: none;
   background-color: var(--purple-dark);
   cursor: pointer;
@@ -101,4 +102,40 @@
   align-items: center;
   padding: 0.5rem;
   border-radius: 6px;
+}
+
+.cardCart {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--base-button);
+}
+
+.cardCart h3 {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--base-subtitle);
+  margin-bottom: 0.5rem;
+}
+
+.cardCart > p {
+  font-weight: 700;
+}
+
+.wrapperActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.wrapperActions > button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background-color: var(--base-button);
+  padding: 0 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
 }

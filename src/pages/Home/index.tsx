@@ -7,12 +7,14 @@ export function Home() {
   return (
     <>
       <Banner />
-      <h2>Nossos cafés</h2>
-      <div className={styles.wrapperCards}>
-        {coffees.map((coffee) => (
-          <Card coffee={coffee} key={coffee.id} />
-        ))}
-      </div>
+      <main className={styles.containerHome}>
+        <h2>Nossos cafés</h2>
+        <div className={styles.wrapperCards}>
+          {coffees.map((coffee) => (
+            <Card coffee={coffee} key={coffee.id} typeCard={'catalog'} />
+          ))}
+        </div>
+      </main>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import { useContext } from 'react';
+import { Card } from '../../components/Card';
 import { CartContext } from '../../context/CartContext';
 import { coffees } from '../../data/coffee-list.json';
+import styles from './styles.module.css';
 
 export function Checkout() {
   const { cart } = useContext(CartContext);
@@ -10,20 +12,24 @@ export function Checkout() {
   );
 
   return (
-    <>
-      <h1>Checkout</h1>
+    <main className={styles.containerCheckout}>
       <div>
-        {filteredCoffees.map((coffee) => {
-          const item = cart.find((item) => item.id === coffee.id);
-          return (
-            <div key={coffee.id}>
-              <img src={coffee.image} alt={coffee.image} />
-              <h3>{coffee.name}</h3>
-              <span>{item?.count}</span>
-            </div>
-          );
-        })}
+        <h2>Complete seu pedido</h2>
+        <form>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
+          necessitatibus quaerat temporibus doloribus repellat, dolores facilis,
+          natus saepe quia ex, voluptas corrupti? Nobis error id, atque dolor
+          nihil tenetur inventore.
+        </form>
       </div>
-    </>
+      <div>
+        <h2>Cafés selecionados</h2>
+        <div className={styles.resume}>
+          {filteredCoffees.map((coffee) => {
+            return <Card coffee={coffee} key={coffee.id} typeCard={'cart'} />;
+          })}
+        </div>
+      </div>
+    </main>
   );
 }
