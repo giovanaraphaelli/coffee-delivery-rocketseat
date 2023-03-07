@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../../context/CartContext';
 import styles from './styles.module.css';
 
 interface Coffee {
@@ -17,6 +18,7 @@ interface CardProps {
 
 export function Card({ coffee }: CardProps) {
   const [count, setCount] = useState<number>(1);
+  const { handleAddToCart } = useContext(CartContext);
 
   function handleIncrement() {
     setCount(count + 1);
@@ -34,6 +36,10 @@ export function Card({ coffee }: CardProps) {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
+  }
+
+  function handleAddToCartClick() {
+    handleAddToCart(coffee.id, count);
   }
 
   return (
@@ -60,7 +66,7 @@ export function Card({ coffee }: CardProps) {
               <Plus size={14} weight="fill" />
             </button>
           </div>
-          <button type="button">
+          <button type="button" onClick={handleAddToCartClick}>
             <ShoppingCart size={20} weight="fill" color="#fff" />
           </button>
         </div>
