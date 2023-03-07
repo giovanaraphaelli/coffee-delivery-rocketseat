@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 import CoffeeBanner from '../../assets/coffee-banner.png';
-import { ShoppingCart } from 'phosphor-react';
+import { Coffee, Cube, ShoppingCart, Timer } from 'phosphor-react';
 
 export function Banner() {
   return (
@@ -20,19 +20,19 @@ export function Banner() {
           </div>
           <div>
             <div>
-              <ShoppingCart size={16} weight="fill" />
+              <Cube size={16} weight="fill" />
             </div>
             <p>Embalagem mantém o café intacto</p>
           </div>
           <div>
             <div>
-              <ShoppingCart size={16} weight="fill" />
+              <Timer size={16} weight="fill" />
             </div>
             <p>Entrega rápida e rastreada</p>
           </div>
           <div>
             <div>
-              <ShoppingCart size={16} weight="fill" />
+              <Coffee size={16} weight="fill" />
             </div>
             <p>O café chega fresquinho até você</p>
           </div>
