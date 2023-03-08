@@ -13,15 +13,41 @@
 }
 
 .wrapperResume,
+.resumeEmpty,
 .containerCheckout form {
   background-color: var(--base-card);
   padding: 2.5rem;
 }
 
-.wrapperResume {
+.wrapperResume,
+.resumeEmpty {
   border-radius: 6px 44px;
   display: flex;
   flex-direction: column;
+}
+
+.resumeEmpty {
+  margin-top: 3.7rem;
+}
+
+.resumeEmpty > h2 {
+  text-align: center;
+}
+.resumeEmpty a {
+  text-align: center;
+  width: 100%;
+  background-color: var(--yellow);
+  border-radius: 6px;
+  padding: 0.75rem 0.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: 0.2s;
+}
+.resumeEmpty a:hover {
+  background-color: var(--yellow-dark);
 }
 
 .wrapperResume footer {

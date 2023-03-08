@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '../../components/Card';
 import { CartContext } from '../../context/CartContext';
 import { coffees } from '../../data/coffee-list.json';
@@ -26,7 +27,10 @@ export function Checkout() {
 
       <div className={styles.resume}>
         {cart.length === 0 ? (
-          <h2>Seu carrinho esta vazio.</h2>
+          <div className={styles.resumeEmpty}>
+            <h2>Seu carrinho está vazio.</h2>
+            <Link to="/">Continuar comprando</Link>
+          </div>
         ) : (
           <div>
             <h2>Cafés selecionados</h2>

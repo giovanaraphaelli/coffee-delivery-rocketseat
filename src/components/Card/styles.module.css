@@ -83,10 +83,15 @@
   background-color: var(--purple);
 }
 
+.cardCart + .cardCart {
+  padding: 2rem 0;
+}
+
 .cardCart {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0;
+
+  padding: 0 0 2rem 0;
   border-bottom: 1px solid var(--base-button);
 }
 
