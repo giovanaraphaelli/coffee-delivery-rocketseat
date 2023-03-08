@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Footer } from '../Footer';
 import { Navbar } from '../Navbar';
 import styles from './styles.module.css';
 
@@ -11,6 +12,7 @@ export function LayoutBase({ children }: LayoutProps) {
     <>
       <Navbar />
       <div className={styles.container}>{children}</div>
+      <Footer />
     </>
   );
 }
