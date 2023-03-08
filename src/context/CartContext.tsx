@@ -8,15 +8,16 @@ interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
-  handleAddToCart: (id: string, amount: number, price: number) => void;
-  handleRemoveFromCart: (id: string) => void;
-  incrementCount: (id: string) => void;
-  decrementCount: (id: string) => void;
   totalAmount: number;
-  totalItens: number;
-  formatPrice: (price: number) => string;
+  totalPriceItens: number;
   frete: number;
   totalCart: number;
+  handleAddToCart: (id: string, amount: number, price: number) => void;
+  handleRemoveFromCart: (id: string) => void;
+  incrementAmount: (id: string) => void;
+  decrementAmount: (id: string) => void;
+  totalPriceCoffee: (price: number, count: number) => number;
+  formatPrice: (price: number) => string;
 }
 
 interface ProviderProps {
@@ -64,7 +65,7 @@ export const CartProvider = ({ children }: ProviderProps) => {
     }
   }
 
-  function incrementCount(id: string) {
+  function incrementAmount(id: string) {
     const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0) {
       const updatedCart = [...cart];
@@ -73,7 +74,7 @@ export const CartProvider = ({ children }: ProviderProps) => {
     }
   }
 
-  function decrementCount(id: string) {
+  function decrementAmount(id: string) {
     const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0 && cart[itemIndex].amount > 1) {
       const updatedCart = [...cart];
@@ -89,25 +90,30 @@ export const CartProvider = ({ children }: ProviderProps) => {
     });
   }
 
+  function totalPriceCoffee(price: number, count: number) {
+    return price * count;
+  }
+
   let totalAmount = cart.reduce((total, item) => total + item.amount, 0);
 
-  let totalItens = cart.reduce((total, item) => item.price * totalAmount, 0);
+  let totalPriceItens = cart.reduce((_, item) => item.price * totalAmount, 0);
 
   let frete = 3.5;
 
-  let totalCart = totalItens + frete;
+  let totalCart = totalPriceItens + frete;
 
   return (
     <CartContext.Provider
       value={{
         cart,
         handleAddToCart,
-        incrementCount,
-        decrementCount,
         handleRemoveFromCart,
-        totalAmount,
-        totalItens,
+        incrementAmount,
+        decrementAmount,
+        totalPriceCoffee,
         formatPrice,
+        totalAmount,
+        totalPriceItens,
         frete,
         totalCart,
       }}

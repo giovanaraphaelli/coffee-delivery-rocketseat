@@ -20,11 +20,12 @@ interface CardProps {
 export function Card({ coffee, typeCard }: CardProps) {
   const {
     handleAddToCart,
-    incrementCount,
-    decrementCount,
+    incrementAmount,
+    decrementAmount,
     handleRemoveFromCart,
     cart,
     formatPrice,
+    totalPriceCoffee,
   } = useContext(CartContext);
 
   const existingCartItem = cart.find((item) => item.id === coffee.id);
@@ -34,18 +35,14 @@ export function Card({ coffee, typeCard }: CardProps) {
 
   function handleIncrement() {
     setAmount(amount + 1);
-    incrementCount(coffee.id);
+    incrementAmount(coffee.id);
   }
 
   function handleDecrement() {
     if (amount > 1) {
       setAmount(amount - 1);
-      decrementCount(coffee.id);
+      decrementAmount(coffee.id);
     }
-  }
-
-  function totalPriceCoffee(price: number, count: number) {
-    return price * count;
   }
 
   return (
