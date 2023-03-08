@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 448px;
   gap: 2rem;
   align-items: start;
+  padding-top: 4rem;
 }
 
 .containerCheckout h2 {

@@ -42,24 +42,26 @@ export function Navbar() {
 
   return (
     <header className={styles.header}>
-      <Link to="/">
-        <img src={Logo} alt="Logo Coffee Delivery" />
-      </Link>
-      <div className={styles.actions}>
-        {location.city && location.state && (
-          <div className={styles.location}>
-            <MapPin size={32} color="#8047F8" weight="fill" />
-            <span>{`${location.city}, ${location.state}`}</span>
-          </div>
-        )}
+      <div>
+        <Link to="/">
+          <img src={Logo} alt="Logo Coffee Delivery" />
+        </Link>
+        <div className={styles.actions}>
+          {location.city && location.state && (
+            <div className={styles.location}>
+              <MapPin size={32} color="#8047F8" weight="fill" />
+              <span>{`${location.city}, ${location.state}`}</span>
+            </div>
+          )}
 
-        <div className={styles.cart}>
-          <Link to="/checkout">
-            <ShoppingCart size={32} weight="fill" color="#C47F17" />
-            {cart.length > 0 && (
-              <span className={styles.notification}>{totalAmount}</span>
-            )}
-          </Link>
+          <div className={styles.cart}>
+            <Link to="/checkout">
+              <ShoppingCart size={32} weight="fill" color="#C47F17" />
+              {cart.length > 0 && (
+                <span className={styles.notification}>{totalAmount}</span>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
     </header>

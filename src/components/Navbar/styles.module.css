@@ -1,10 +1,19 @@
 header {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  position: fixed;
+  top: 0;
+  background-color: var(--background);
+  z-index: 1000;
+}
+header > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .actions {
