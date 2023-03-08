@@ -107,7 +107,7 @@
 .cardCart {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--base-button);
 }
 

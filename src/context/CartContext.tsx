@@ -2,15 +2,21 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 
 interface CartItem {
   id: string;
-  count: number;
+  amount: number;
+  price: number;
 }
 
 interface CartContextType {
   cart: CartItem[];
-  handleAddToCart: (id: string, count: number) => void;
+  handleAddToCart: (id: string, amount: number, price: number) => void;
   handleRemoveFromCart: (id: string) => void;
   incrementCount: (id: string) => void;
   decrementCount: (id: string) => void;
+  totalAmount: number;
+  totalItens: number;
+  formatPrice: (price: number) => string;
+  frete: number;
+  totalCart: number;
 }
 
 interface ProviderProps {
@@ -33,24 +39,24 @@ export const CartProvider = ({ children }: ProviderProps) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  function findCartItemIndexById(id: string): number {
+  function findCoffeeById(id: string): number {
     return cart.findIndex((item) => item.id === id);
   }
 
-  function handleAddToCart(id: string, count: number) {
-    const itemIndex = findCartItemIndexById(id);
+  function handleAddToCart(id: string, amount: number, price: number) {
+    const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0) {
       const updatedCart = [...cart];
-      updatedCart[itemIndex].count += count;
+      updatedCart[itemIndex].amount += amount;
       setCart(updatedCart);
     } else {
-      const newCartItem: CartItem = { id, count };
+      const newCartItem: CartItem = { id, price, amount };
       setCart([...cart, newCartItem]);
     }
   }
 
   function handleRemoveFromCart(id: string) {
-    const itemIndex = findCartItemIndexById(id);
+    const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0) {
       const updatedCart = [...cart];
       updatedCart.splice(itemIndex, 1);
@@ -59,22 +65,37 @@ export const CartProvider = ({ children }: ProviderProps) => {
   }
 
   function incrementCount(id: string) {
-    const itemIndex = findCartItemIndexById(id);
+    const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0) {
       const updatedCart = [...cart];
-      updatedCart[itemIndex].count += 1;
+      updatedCart[itemIndex].amount += 1;
       setCart(updatedCart);
     }
   }
 
   function decrementCount(id: string) {
-    const itemIndex = findCartItemIndexById(id);
-    if (itemIndex >= 0 && cart[itemIndex].count > 1) {
+    const itemIndex = findCoffeeById(id);
+    if (itemIndex >= 0 && cart[itemIndex].amount > 1) {
       const updatedCart = [...cart];
-      updatedCart[itemIndex].count -= 1;
+      updatedCart[itemIndex].amount -= 1;
       setCart(updatedCart);
     }
   }
+
+  function formatPrice(price: number): string {
+    return price.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
+  let totalAmount = cart.reduce((total, item) => total + item.amount, 0);
+
+  let totalItens = cart.reduce((total, item) => item.price * totalAmount, 0);
+
+  let frete = 3.5;
+
+  let totalCart = totalItens + frete;
 
   return (
     <CartContext.Provider
@@ -84,6 +105,11 @@ export const CartProvider = ({ children }: ProviderProps) => {
         incrementCount,
         decrementCount,
         handleRemoveFromCart,
+        totalAmount,
+        totalItens,
+        formatPrice,
+        frete,
+        totalCart,
       }}
     >
       {children}

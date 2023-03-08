@@ -5,7 +5,8 @@ import { coffees } from '../../data/coffee-list.json';
 import styles from './styles.module.css';
 
 export function Checkout() {
-  const { cart } = useContext(CartContext);
+  const { cart, totalItens, formatPrice, frete, totalCart } =
+    useContext(CartContext);
 
   const filteredCoffees = coffees.filter((coffee) =>
     cart.some((item) => item.id === coffee.id)
@@ -22,13 +23,37 @@ export function Checkout() {
           nihil tenetur inventore.
         </form>
       </div>
-      <div>
-        <h2>Cafés selecionados</h2>
-        <div className={styles.resume}>
-          {filteredCoffees.map((coffee) => {
-            return <Card coffee={coffee} key={coffee.id} typeCard={'cart'} />;
-          })}
-        </div>
+
+      <div className={styles.resume}>
+        {cart.length === 0 ? (
+          <h2>Seu carrinho esta vazio.</h2>
+        ) : (
+          <>
+            <h2>Cafés selecionados</h2>
+            <div>
+              {filteredCoffees.map((coffee) => {
+                return (
+                  <Card coffee={coffee} key={coffee.id} typeCard={'cart'} />
+                );
+              })}
+            </div>
+            <footer>
+              <div>
+                <p>Total de Itens</p>
+                <span>R$ {formatPrice(totalItens)}</span>
+              </div>
+              <div>
+                <p>Entrega</p>
+                <span>R$ {formatPrice(frete)}</span>
+              </div>
+              <div className={styles.total}>
+                <h4>Total</h4>
+                <span>R$ {formatPrice(totalCart)}</span>
+              </div>
+              <button type="submit">Confirmar pedido</button>
+            </footer>
+          </>
+        )}
       </div>
     </main>
   );

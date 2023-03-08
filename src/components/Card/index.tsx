@@ -23,38 +23,34 @@ export function Card({ coffee, typeCard }: CardProps) {
     incrementCount,
     decrementCount,
     handleRemoveFromCart,
+    cart,
+    formatPrice,
   } = useContext(CartContext);
 
-  const existingCartItem = useContext(CartContext).cart.find(
-    (item) => item.id === coffee.id
-  );
-  const [count, setCount] = useState<number>(
-    existingCartItem ? existingCartItem.count : 1
+  const existingCartItem = cart.find((item) => item.id === coffee.id);
+  const [amount, setAmount] = useState<number>(
+    existingCartItem ? existingCartItem.amount : 1
   );
 
   function handleIncrement() {
-    setCount(count + 1);
+    setAmount(amount + 1);
     incrementCount(coffee.id);
   }
 
   function handleDecrement() {
-    if (count > 1) {
-      setCount(count - 1);
+    if (amount > 1) {
+      setAmount(amount - 1);
       decrementCount(coffee.id);
     }
   }
 
-  function formatPrice(price: number, count: number): string {
-    const total = price * count;
-    return total.toLocaleString('pt-BR', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+  function totalPriceCoffee(price: number, count: number) {
+    return price * count;
   }
 
   return (
     <>
-      {typeCard === 'catalog' ? (
+      {typeCard === 'catalog' && (
         <div className={styles.cardCatalog}>
           <img src={coffee.image} alt={coffee.name} />
           <div className={styles.wrapperTags}>
@@ -66,14 +62,18 @@ export function Card({ coffee, typeCard }: CardProps) {
           <p>{coffee.description}</p>
           <form>
             <p>
-              R$<span> {formatPrice(coffee.price, count)}</span>
+              R$
+              <span className={styles.price}>
+                {' '}
+                {formatPrice(totalPriceCoffee(coffee.price, amount))}
+              </span>
             </p>
             <div>
               <div className={styles.counter}>
                 <button type="button" onClick={handleDecrement}>
                   <Minus size={14} weight="fill" />
                 </button>
-                <span>{count}</span>
+                <span>{amount}</span>
                 <button type="button" onClick={handleIncrement}>
                   <Plus size={14} weight="fill" />
                 </button>
@@ -82,7 +82,7 @@ export function Card({ coffee, typeCard }: CardProps) {
                 className={styles.btnCart}
                 type="button"
                 onClick={() => {
-                  handleAddToCart(coffee.id, count);
+                  handleAddToCart(coffee.id, amount, coffee.price);
                 }}
               >
                 <ShoppingCart size={20} weight="fill" color="#fff" />
@@ -90,7 +90,9 @@ export function Card({ coffee, typeCard }: CardProps) {
             </div>
           </form>
         </div>
-      ) : (
+      )}
+
+      {typeCard === 'cart' && (
         <div className={styles.cardCart}>
           <img src={coffee.image} alt={coffee.image} />
           <div>
@@ -100,7 +102,7 @@ export function Card({ coffee, typeCard }: CardProps) {
                 <button type="button" onClick={handleDecrement}>
                   <Minus size={14} weight="fill" />
                 </button>
-                <span>{count}</span>
+                <span>{amount}</span>
                 <button type="button" onClick={handleIncrement}>
                   <Plus size={14} weight="fill" />
                 </button>
@@ -116,7 +118,8 @@ export function Card({ coffee, typeCard }: CardProps) {
             </div>
           </div>
           <p>
-            R$<span> {formatPrice(coffee.price, count)}</span>
+            R$
+            <span> {formatPrice(totalPriceCoffee(coffee.price, amount))}</span>
           </p>
         </div>
       )}
