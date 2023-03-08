@@ -28,31 +28,33 @@ export function Checkout() {
         {cart.length === 0 ? (
           <h2>Seu carrinho esta vazio.</h2>
         ) : (
-          <>
+          <div>
             <h2>Cafés selecionados</h2>
-            <div>
-              {filteredCoffees.map((coffee) => {
-                return (
-                  <Card coffee={coffee} key={coffee.id} typeCard={'cart'} />
-                );
-              })}
+            <div className={styles.wrapperResume}>
+              <div>
+                {filteredCoffees.map((coffee) => {
+                  return (
+                    <Card coffee={coffee} key={coffee.id} typeCard={'cart'} />
+                  );
+                })}
+              </div>
+              <footer>
+                <div>
+                  <p>Total de Itens</p>
+                  <span>R$ {formatPrice(totalPriceItens)}</span>
+                </div>
+                <div>
+                  <p>Entrega</p>
+                  <span>R$ {formatPrice(frete)}</span>
+                </div>
+                <div className={styles.total}>
+                  <h4>Total</h4>
+                  <span>R$ {formatPrice(totalCart)}</span>
+                </div>
+                <button type="submit">Confirmar pedido</button>
+              </footer>
             </div>
-            <footer>
-              <div>
-                <p>Total de Itens</p>
-                <span>R$ {formatPrice(totalPriceItens)}</span>
-              </div>
-              <div>
-                <p>Entrega</p>
-                <span>R$ {formatPrice(frete)}</span>
-              </div>
-              <div className={styles.total}>
-                <h4>Total</h4>
-                <span>R$ {formatPrice(totalCart)}</span>
-              </div>
-              <button type="submit">Confirmar pedido</button>
-            </footer>
-          </>
+          </div>
         )}
       </div>
     </main>

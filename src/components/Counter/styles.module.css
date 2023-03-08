@@ -1,0 +1,25 @@
+.counter {
+  background-color: var(--base-button);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  max-width: 4.5rem;
+}
+
+.counter button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.7rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.counter button svg {
+  color: var(--purple);
+}
+
+.counter span {
+  color: var(--base-title);
+}

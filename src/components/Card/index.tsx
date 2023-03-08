@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart, Trash } from 'phosphor-react';
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { Counter } from '../Counter';
 import styles from './styles.module.css';
 
 interface Coffee {
@@ -66,15 +67,11 @@ export function Card({ coffee, typeCard }: CardProps) {
               </span>
             </p>
             <div>
-              <div className={styles.counter}>
-                <button type="button" onClick={handleDecrement}>
-                  <Minus size={14} weight="fill" />
-                </button>
-                <span>{amount}</span>
-                <button type="button" onClick={handleIncrement}>
-                  <Plus size={14} weight="fill" />
-                </button>
-              </div>
+              <Counter
+                amount={amount}
+                handleDecrement={handleDecrement}
+                handleIncrement={handleIncrement}
+              />
               <button
                 className={styles.btnCart}
                 type="button"
@@ -95,16 +92,11 @@ export function Card({ coffee, typeCard }: CardProps) {
           <div>
             <h3>{coffee.name}</h3>
             <div className={styles.wrapperActions}>
-              <div className={styles.counter}>
-                <button type="button" onClick={handleDecrement}>
-                  <Minus size={14} weight="fill" />
-                </button>
-                <span>{amount}</span>
-                <button type="button" onClick={handleIncrement}>
-                  <Plus size={14} weight="fill" />
-                </button>
-              </div>
-
+              <Counter
+                amount={amount}
+                handleDecrement={handleDecrement}
+                handleIncrement={handleIncrement}
+              />
               <button
                 type="button"
                 onClick={() => handleRemoveFromCart(coffee.id)}

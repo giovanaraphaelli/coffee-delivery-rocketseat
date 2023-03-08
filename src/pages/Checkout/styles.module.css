@@ -9,31 +9,32 @@
   font-family: 'Baloo 2';
   font-weight: 700;
   font-size: 1.125rem;
+  margin-bottom: 2rem;
 }
 
-.containerCheckout .resume,
+.wrapperResume,
 .containerCheckout form {
   background-color: var(--base-card);
   padding: 2.5rem;
 }
 
-.containerCheckout .resume {
+.wrapperResume {
   border-radius: 6px 44px;
   display: flex;
   flex-direction: column;
 }
 
-.containerCheckout .resume footer {
+.wrapperResume footer {
   padding: 2rem 0;
 }
 
-.containerCheckout .resume footer div {
+.wrapperResume footer div {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.containerCheckout .resume footer div p {
+.wrapperResume footer div p {
   font-size: 0.875rem;
 }
 
@@ -44,7 +45,7 @@
   font-weight: 700;
 }
 
-.containerCheckout .resume footer button {
+.wrapperResume footer button {
   border: none;
   width: 100%;
   background-color: var(--yellow);
@@ -58,6 +59,6 @@
   transition: 0.2s;
 }
 
-.containerCheckout .resume footer button:hover {
+.wrapperResume footer button:hover {
   background-color: var(--yellow-dark);
 }
