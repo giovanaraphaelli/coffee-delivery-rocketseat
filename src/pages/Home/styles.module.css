@@ -11,6 +11,33 @@
   grid-template-columns: 256px 256px 256px 256px;
   gap: 2rem;
 }
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.alert {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: fixed;
+  bottom: 20px;
+  left: calc(50% - 150px);
+  background-color: var(--yellow);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  animation: slide-up 0.5s ease;
+}
 
 @media (max-width: 768px) {
   .containerHome h2 {

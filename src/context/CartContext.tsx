@@ -12,6 +12,7 @@ interface CartContextType {
   totalPriceItens: number;
   frete: number;
   totalCart: number;
+  showAlert: boolean;
   handleAddToCart: (id: string, amount: number, price: number) => void;
   handleRemoveFromCart: (id: string) => void;
   incrementAmount: (id: string) => void;
@@ -36,6 +37,8 @@ export const CartProvider = ({ children }: ProviderProps) => {
     }
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -54,6 +57,7 @@ export const CartProvider = ({ children }: ProviderProps) => {
       const newCartItem: CartItem = { id, price, amount };
       setCart([...cart, newCartItem]);
     }
+    showTooltipTemporarily();
   }
 
   function handleRemoveFromCart(id: string) {
@@ -102,6 +106,11 @@ export const CartProvider = ({ children }: ProviderProps) => {
 
   let totalCart = totalPriceItens + frete;
 
+  function showTooltipTemporarily() {
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 2000);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -116,6 +125,7 @@ export const CartProvider = ({ children }: ProviderProps) => {
         totalPriceItens,
         frete,
         totalCart,
+        showAlert,
       }}
     >
       {children}
