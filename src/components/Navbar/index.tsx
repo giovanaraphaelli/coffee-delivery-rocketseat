@@ -1,7 +1,8 @@
 import { MapPin, ShoppingCart } from 'phosphor-react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo.svg';
+import { CartContext } from '../../context/CartContext';
 import styles from './styles.module.css';
 
 interface LocationData {
@@ -37,6 +38,8 @@ export function Navbar() {
     getLocation();
   }, []);
 
+  const { cart, totalAmount } = useContext(CartContext);
+
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -53,6 +56,9 @@ export function Navbar() {
         <div className={styles.cart}>
           <Link to="/checkout">
             <ShoppingCart size={32} weight="fill" color="#C47F17" />
+            {cart.length > 0 && (
+              <span className={styles.notification}>{totalAmount}</span>
+            )}
           </Link>
         </div>
       </div>

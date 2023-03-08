@@ -25,7 +25,27 @@ header {
 .cart {
   background-color: var(--yellow-light);
   padding: 0.5rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.cart a {
   display: flex;
   align-items: center;
-  border-radius: 6px;
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -8.35px;
+  top: -8px;
+  background-color: var(--yellow-dark);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--white);
 }
