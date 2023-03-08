@@ -13,7 +13,11 @@
 }
 
 @media (max-width: 768px) {
+  .containerHome h2 {
+    font-size: 1.5rem;
+  }
   .wrapperCards {
-    grid-template-columns: 1fr;
+    justify-content: center;
+    grid-template-columns: 300px;
   }
 }

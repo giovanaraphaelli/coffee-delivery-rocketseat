@@ -104,6 +104,8 @@
 
 .cardCart > p {
   font-weight: 700;
+  min-width: 4.7rem;
+  text-align: right;
 }
 
 .wrapperActions {
@@ -117,7 +119,7 @@
   gap: 4px;
   border: none;
   background-color: var(--base-button);
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   text-transform: uppercase;
   font-size: 0.75rem;
   border-radius: 6px;
@@ -127,4 +129,15 @@
 
 .wrapperActions > button:hover {
   background-color: var(--base-hover);
+}
+
+@media (max-width: 768px) {
+  .cardCart > p {
+    min-width: 4rem;
+  }
+  .wrapperActions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

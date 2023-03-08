@@ -60,6 +60,13 @@
   .banner {
     grid-template-columns: 1fr;
   }
+  .banner > div > h1 {
+    font-size: 2rem;
+  }
+  .banner > div > p {
+    font-size: 1rem;
+  }
+
   .banner > img {
     display: none;
   }
