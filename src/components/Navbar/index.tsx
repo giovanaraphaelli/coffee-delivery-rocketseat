@@ -38,7 +38,7 @@ export function Navbar() {
     getLocation();
   }, []);
 
-  const { cart, totalAmount } = useContext(CartContext);
+  const { cart, totalAmountCartItens } = useContext(CartContext);
 
   return (
     <header className={styles.header}>
@@ -58,7 +58,9 @@ export function Navbar() {
             <Link to="/checkout">
               <ShoppingCart size={32} weight="fill" color="#C47F17" />
               {cart.length > 0 && (
-                <span className={styles.notification}>{totalAmount}</span>
+                <span className={styles.notification}>
+                  {totalAmountCartItens}
+                </span>
               )}
             </Link>
           </div>

@@ -6,7 +6,7 @@ import { coffees } from '../../data/coffee-list.json';
 import styles from './styles.module.css';
 
 export function Checkout() {
-  const { cart, totalPriceItens, formatPrice, frete, totalCart } =
+  const { cart, totalPriceCartItens, formatPrice, frete, totalPriceCart } =
     useContext(CartContext);
 
   const filteredCoffees = coffees.filter((coffee) =>
@@ -45,7 +45,7 @@ export function Checkout() {
               <footer>
                 <div>
                   <p>Total de Itens</p>
-                  <span>R$ {formatPrice(totalPriceItens)}</span>
+                  <span>R$ {formatPrice(totalPriceCartItens)}</span>
                 </div>
                 <div>
                   <p>Entrega</p>
@@ -53,7 +53,7 @@ export function Checkout() {
                 </div>
                 <div className={styles.total}>
                   <h4>Total</h4>
-                  <span>R$ {formatPrice(totalCart)}</span>
+                  <span>R$ {formatPrice(totalPriceCart)}</span>
                 </div>
                 <button type="submit">Confirmar pedido</button>
               </footer>

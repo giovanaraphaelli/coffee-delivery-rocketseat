@@ -26,7 +26,7 @@ export function Card({ coffee, typeCard }: CardProps) {
     handleRemoveFromCart,
     cart,
     formatPrice,
-    totalPriceCoffee,
+    totalPriceEachItem,
   } = useContext(CartContext);
 
   const existingCartItem = cart.find((item) => item.id === coffee.id);
@@ -63,7 +63,7 @@ export function Card({ coffee, typeCard }: CardProps) {
               R$
               <span className={styles.price}>
                 {' '}
-                {formatPrice(totalPriceCoffee(coffee.price, amount))}
+                {formatPrice(totalPriceEachItem(coffee.price, amount))}
               </span>
             </p>
             <div>
@@ -108,7 +108,10 @@ export function Card({ coffee, typeCard }: CardProps) {
           </div>
           <p>
             R$
-            <span> {formatPrice(totalPriceCoffee(coffee.price, amount))}</span>
+            <span>
+              {' '}
+              {formatPrice(totalPriceEachItem(coffee.price, amount))}
+            </span>
           </p>
         </div>
       )}

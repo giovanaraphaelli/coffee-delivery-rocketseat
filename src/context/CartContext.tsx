@@ -8,16 +8,16 @@ interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
-  totalAmount: number;
-  totalPriceItens: number;
+  totalAmountCartItens: number;
+  totalPriceCartItens: number;
   frete: number;
-  totalCart: number;
+  totalPriceCart: number;
   showAlert: boolean;
   handleAddToCart: (id: string, amount: number, price: number) => void;
   handleRemoveFromCart: (id: string) => void;
   incrementAmount: (id: string) => void;
   decrementAmount: (id: string) => void;
-  totalPriceCoffee: (price: number, count: number) => number;
+  totalPriceEachItem: (price: number, count: number) => number;
   formatPrice: (price: number) => string;
 }
 
@@ -47,6 +47,11 @@ export const CartProvider = ({ children }: ProviderProps) => {
     return cart.findIndex((item) => item.id === id);
   }
 
+  function showAlertTemporarily() {
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 2000);
+  }
+
   function handleAddToCart(id: string, amount: number, price: number) {
     const itemIndex = findCoffeeById(id);
     if (itemIndex >= 0) {
@@ -57,7 +62,7 @@ export const CartProvider = ({ children }: ProviderProps) => {
       const newCartItem: CartItem = { id, price, amount };
       setCart([...cart, newCartItem]);
     }
-    showTooltipTemporarily();
+    showAlertTemporarily();
   }
 
   function handleRemoveFromCart(id: string) {
@@ -94,22 +99,23 @@ export const CartProvider = ({ children }: ProviderProps) => {
     });
   }
 
-  function totalPriceCoffee(price: number, count: number) {
+  function totalPriceEachItem(price: number, count: number) {
     return price * count;
   }
 
-  let totalAmount = cart.reduce((total, item) => total + item.amount, 0);
+  let totalAmountCartItens = cart.reduce(
+    (total, item) => total + item.amount,
+    0
+  );
 
-  let totalPriceItens = cart.reduce((_, item) => item.price * totalAmount, 0);
+  let totalPriceCartItens = cart.reduce(
+    (_, item) => item.price * totalAmountCartItens,
+    0
+  );
 
   let frete = 3.5;
 
-  let totalCart = totalPriceItens + frete;
-
-  function showTooltipTemporarily() {
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 2000);
-  }
+  let totalPriceCart = totalPriceCartItens + frete;
 
   return (
     <CartContext.Provider
@@ -119,12 +125,12 @@ export const CartProvider = ({ children }: ProviderProps) => {
         handleRemoveFromCart,
         incrementAmount,
         decrementAmount,
-        totalPriceCoffee,
+        totalPriceEachItem,
         formatPrice,
-        totalAmount,
-        totalPriceItens,
+        totalAmountCartItens,
+        totalPriceCartItens,
         frete,
-        totalCart,
+        totalPriceCart,
         showAlert,
       }}
     >
